@@ -208,14 +208,22 @@
         period = 60* parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
         $("#time").html("経過時間： 0");
         $("#remain").html("残り時間： " + period);
+        if(period <= 10){
+            $("body").css("background-color", "orange");
+        }else{
+            $("body").css("background-color", "skyblue");
+        }
+            
     }
 
     function btnDClick(e){
         period -= 60;
         if(period <= 0){
             period = 0;
+            rest = period;
+        }else{
+            rest = period - etime;
         }
-        rest = period - etime;
         $("#time").html("経過時間： " + etime);
         $("#remain").html("残り時間： " + rest);
     }
@@ -233,6 +241,9 @@
         if (active) {
             etime = parseInt( (new Date() - startTime)/1000 );
             rest = period - etime;
+            if(rest <= 0){
+                rest = 0;
+            }
             $("#time").html("経過時間： " + etime);
             $("#remain").html("残り時間： " + rest);
             analog(rest);
