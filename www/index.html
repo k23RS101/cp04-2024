@@ -212,12 +212,19 @@
 
     function btnDClick(e){
         period -= 60;
-        
+        if(period <= 0){
+            period = 0;
+        }
+        rest = period - etime;
+        $("#time").html("経過時間： " + etime);
+        $("#remain").html("残り時間： " + rest);
     }
 
     function btnEClick(e){
         period += 60;
-        
+        rest = period - etime;
+        $("#time").html("経過時間： " + etime);
+        $("#remain").html("残り時間： " + rest);
     }
     
  
